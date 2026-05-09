@@ -1,0 +1,73 @@
+{
+  "flux_name": "MuMu Player Auto Race",
+  "steps": [
+    {
+      "action": "find_and_click",
+      "image": "templates/Activities_CasualButton.png",
+      "retry_interval": 1, 
+      "skip": true,
+      "max_retries": 3
+    },
+    {
+      "action": "find_and_click",
+      "image": "templates/Casual_sparrowRacing.png",
+      "retry_interval": 1, 
+      "skip": true,
+      "max_retries": 3
+    },
+    {
+      "action": "find_and_click",
+      "image": "templates/SparrowRace_StartMatching.png",
+      "retry_interval": 1, 
+      "skip": true,
+      "max_retries": 3
+    },
+    {
+      "action": "find_and_click",
+      "image": "templates/SparrowRace_OnlyMatchmake.png",
+      "retry_interval": 1,
+      "skip": true,
+      "max_retries": 3
+    },
+    {
+      "action": "find_and_click",
+      "image": "templates/PreGame_ReadyButton.png",
+      "retry_interval": 1,
+      "skip": false
+    },
+    {
+      "action": "find_and_click",
+      "image": "templates/PreGame_ReadyButton.png",
+      "retry_interval": 1,
+      "skip": false
+    },
+    {
+      "action": "wait_for_image",
+      "image": "templates/InsideGame_Boost.png",
+      "timeout": 300
+    },
+    {
+      "action": "joystick_drag",
+      "image": "templates/Race_pos6.png",
+      "start_x": 400,
+      "start_y": 800,
+      "end_x": 400,
+      "end_y": 300,
+      "hold_duration": 20,
+      "delay_before": 5,
+      "retry_interval": 1,
+      "skip": false,
+      "max_retries": 2
+    },
+    {
+      "action": "find_and_click",
+      "image": "templates/Endgame_ChallengeAgain.png",
+      "retry_interval": 3,
+      "skip": false
+    },
+    {
+      "action": "stop_script",
+      "image": "templates/OutOfTime.png"
+    }
+  ]
+}
