@@ -38,28 +38,30 @@ def load_settings():
     os.makedirs('templates', exist_ok=True)
 
 def connect_to_emulator():
-    """Varre os ports comuns e retorna True se conectar, False se falhar."""
     global TARGET_DEVICE
-    
     common_ports = ["16384", "5555", "7555", "16385"]
     
-    print("\n[*] Buscando conexão com o emulador...")
+    print("\n[*] Resetting ADB Engine (Clearing ghost connections)...")
+    subprocess.run(f"{ADB_CMD} kill-server", shell=True, capture_output=True)
+    subprocess.run(f"{ADB_CMD} start-server", shell=True, capture_output=True)
+    
+    print("[*] Scanning for active emulator ports...")
     
     for port in common_ports:
         device_ip = f"127.0.0.1:{port}"
-        sys.stdout.write(f"  -> Testando porta {port}... ")
+        sys.stdout.write(f"  -> Testing port {port}... ")
         sys.stdout.flush()
         
-        subprocess.run(f"{ADB_CMD} connect {device_ip}", shell=True, capture_output=True, text=True)
+        subprocess.run(f"{ADB_CMD} connect {device_ip}", shell=True, capture_output=True)
         
         check = subprocess.run(f"{ADB_CMD} devices", shell=True, capture_output=True, text=True)
         
         if device_ip in check.stdout and "offline" not in check.stdout:
-            print(f"[SUCESSO] Conectado em: {device_ip}")
+            print(f"[SUCCESS] Locked onto: {device_ip}")
             TARGET_DEVICE = device_ip
             return True 
         else:
-            print("[FALHA]")
+            print("[FAILED]")
             
     return False
 
