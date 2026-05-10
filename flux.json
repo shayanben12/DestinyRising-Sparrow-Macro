@@ -56,7 +56,7 @@
       "hold_duration": 3,
       "delay_before": 5,
       "retry_interval": 1,
-      "skip": false,
+      "skip": true,
       "max_retries": 2
     },
     {
@@ -77,21 +77,21 @@
       "image": "InsideGame_reposition.png",
       "retry_interval": 1,
       "delay_before": 1,
-      "skip": false
+      "skip": true
     },
     {
       "action": "find_and_click",
       "image": "InsideGame_reposition.png",
       "retry_interval": 1,
       "delay_before": 4,
-      "skip": false
+      "skip": true
     },
     {
       "action": "find_and_click",
       "image": "InsideGame_reposition.png",
       "retry_interval": 1,
       "delay_before": 4,
-      "skip": false
+      "skip": true
     },
     {
       "action": "joystick_drag",
@@ -103,7 +103,7 @@
       "hold_duration": 5,
       "delay_before": 3,
       "retry_interval": 1,
-      "skip": false,
+      "skip": true,
       "max_retries": 2
     },
     {
