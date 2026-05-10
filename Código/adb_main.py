@@ -20,6 +20,7 @@ def load_settings():
             with open(settings_file, 'r') as f:
                 settings = json.load(f)
                 DEBUG_MODE = settings.get('debug_mode', True)
+                # This must remain 1920x1080 so the script knows what resolution the JSON coordinates were built for
                 ORIGINAL_RES = settings.get('original_resolution', [1920, 1080])
         except json.JSONDecodeError:
             print("[!] Error reading settings.json. Using defaults.")
@@ -31,11 +32,10 @@ def load_settings():
         with open(settings_file, 'w') as f:
             json.dump(default_settings, f, indent=4)
             
-    print(f"[*] Settings Loaded | Debug: {DEBUG_MODE} | Base Resolution: {ORIGINAL_RES[0]}x{ORIGINAL_RES[1]}")
+    print(f"[*] Settings Loaded | Debug: {DEBUG_MODE}")
     
     if DEBUG_MODE:
         os.makedirs('debug', exist_ok=True)
-    os.makedirs('templates', exist_ok=True)
 
 def connect_to_emulator():
     global TARGET_DEVICE
@@ -93,24 +93,31 @@ def adb_hold(x, y, duration_seconds):
     duration_ms = int(duration_seconds * 1000)
     subprocess.run(f"{ADB_CMD} -s {TARGET_DEVICE} shell input swipe {int(x)} {int(y)} {int(x)} {int(y)} {duration_ms}", shell=True)
 
-def find_image_on_screen(screen, template_path, threshold=0.75):
+def scale_coords(x, y, current_w, current_h):
+    """Calculates relative coordinates based on the emulator's actual screen size."""
+    scale_x = current_w / ORIGINAL_RES[0]
+    scale_y = current_h / ORIGINAL_RES[1]
+    return int(x * scale_x), int(y * scale_y)
+
+def find_image_on_screen(screen, template_name, threshold=0.75):
     if screen is None:
         return False, None
         
+    # AUTO-DETECT: Get the height of the current emulator window
+    current_h, current_w = screen.shape[:2]
+    
+    # Target the correct templates folder automatically (e.g., templates_480)
+    auto_template_dir = f"templates_{current_h}"
+    template_path = os.path.join(auto_template_dir, template_name)
+        
     if not os.path.exists(template_path):
-        print(f"\n[!] FILE NOT FOUND: Cannot find '{template_path}'. Check your flux.json spelling!")
+        print(f"\n[!] FILE NOT FOUND: Cannot find '{template_path}'. Check your folder names and flux.json spelling!")
         return False, None
         
     template = cv2.imread(template_path)
     if template is None:
         print(f"\n[!] CORRUPT IMAGE: '{template_path}' exists but OpenCV cannot read it.")
         return False, None
-        
-    current_screen_width = screen.shape[1] 
-    scale_factor = current_screen_width / ORIGINAL_RES[0]
-    
-    if scale_factor != 1.0:
-        template = cv2.resize(template, (0, 0), fx=scale_factor, fy=scale_factor)
         
     result = cv2.matchTemplate(screen, template, cv2.TM_CCOEFF_NORMED)
     loc = np.where(result >= threshold)
@@ -133,8 +140,6 @@ def run_flux(json_path):
         
     print(f"\n=== Starting Macro: {flux.get('flux_name', 'Unnamed')} ===")
     
-    connect_to_emulator()
-
     if not connect_to_emulator():
         print("\n[!!!] ERRO CRÍTICO: Não foi possível conectar a nenhuma porta ADB.")
         print("Certifique-se que o MuMu está aberto e o 'ADB Debug' está ligado nas configurações.")
@@ -175,6 +180,7 @@ def run_flux(json_path):
                         found, coords = find_image_on_screen(screen, target_image)
                         
                         if found:
+                            # OpenCV matches the template exactly on screen, no scaling needed here
                             print(f" [SUCCESS] Clicking {coords[0]}, {coords[1]}")
                             adb_click(coords[0], coords[1])
                         else:
@@ -202,8 +208,11 @@ def run_flux(json_path):
                         found, _ = find_image_on_screen(screen, target_image)
                         
                         if found:
-                            print(f" [SUCCESS] Holding touch at {t_x}, {t_y} for {hold_time}s")
-                            adb_hold(t_x, t_y, hold_time)
+                            # Scale the hardcoded JSON coordinates to fit the current screen
+                            current_h, current_w = screen.shape[:2]
+                            scaled_x, scaled_y = scale_coords(t_x, t_y, current_w, current_h)
+                            print(f" [SUCCESS] Holding touch at {scaled_x}, {scaled_y} for {hold_time}s")
+                            adb_hold(scaled_x, scaled_y, hold_time)
                         else:
                             if skip and attempts >= max_retries:
                                 print(f" [SKIP] Moving to next step.")
@@ -231,8 +240,12 @@ def run_flux(json_path):
                         found, _ = find_image_on_screen(screen, target_image)
                         
                         if found:
-                            print(f" [SUCCESS] Dragging joystick from ({s_x},{s_y}) to ({e_x},{e_y}) for {hold_time}s")
-                            adb_drag_and_hold(s_x, s_y, e_x, e_y, hold_time)
+                            # Scale the hardcoded JSON coordinates to fit the current screen
+                            current_h, current_w = screen.shape[:2]
+                            scaled_sx, scaled_sy = scale_coords(s_x, s_y, current_w, current_h)
+                            scaled_ex, scaled_ey = scale_coords(e_x, e_y, current_w, current_h)
+                            print(f" [SUCCESS] Dragging joystick from ({scaled_sx},{scaled_sy}) to ({scaled_ex},{scaled_ey}) for {hold_time}s")
+                            adb_drag_and_hold(scaled_sx, scaled_sy, scaled_ex, scaled_ey, hold_time)
                         else:
                             if skip and attempts >= max_retries:
                                 print(f" [SKIP] Moving to next step.")

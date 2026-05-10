@@ -3,71 +3,118 @@
   "steps": [
     {
       "action": "find_and_click",
-      "image": "templates/Activities_CasualButton.png",
-      "retry_interval": 2, 
+      "image": "Activities_CasualButton.png",
+      "retry_interval": 1, 
       "skip": true,
       "max_retries": 3
     },
     {
       "action": "find_and_click",
-      "image": "templates/Casual_sparrowRacing.png",
-      "retry_interval": 2, 
+      "image": "Casual_sparrowRacing.png",
+      "retry_interval": 1, 
       "skip": true,
       "max_retries": 3
     },
     {
       "action": "find_and_click",
-      "image": "templates/SparrowRace_StartMatching.png",
-      "retry_interval": 2, 
+      "image": "SparrowRace_StartMatching.png",
+      "retry_interval": 1, 
       "skip": true,
       "max_retries": 3
     },
     {
       "action": "find_and_click",
-      "image": "templates/SparrowRace_OnlyMatchmake.png",
-      "retry_interval": 2,
+      "image": "SparrowRace_OnlyMatchmake.png",
+      "retry_interval": 1,
       "skip": true,
       "max_retries": 3
     },
     {
       "action": "find_and_click",
-      "image": "templates/PreGame_ReadyButton.png",
+      "image": "PreGame_ReadyButton.png",
       "retry_interval": 1,
       "skip": false
     },
     {
       "action": "find_and_click",
-      "image": "templates/PreGame_ReadyButton.png",
+      "image": "PreGame_ReadyButton.png",
       "retry_interval": 1,
       "skip": false
     },
     {
       "action": "wait_for_image",
-      "image": "templates/InsideGame_Boost.png",
+      "image": "InsideGame_Boost.png",
       "timeout": 300
     },
     {
       "action": "joystick_drag",
-      "image": "templates/Race_pos6.png",
+      "image": "Race_pos6.png",
       "start_x": 400,
       "start_y": 800,
       "end_x": 400,
       "end_y": 300,
-      "hold_duration": 20,
+      "hold_duration": 3,
       "delay_before": 5,
       "retry_interval": 1,
-      "skip": false,
+      "skip": true,
+      "max_retries": 2
+    },
+    {
+      "action": "joystick_drag",
+      "image": "Race_rank6.png",
+      "start_x": 400,
+      "start_y": 800,
+      "end_x": 400,
+      "end_y": 300,
+      "hold_duration": 3,
+      "delay_before": 5,
+      "retry_interval": 1,
+      "skip": true,
       "max_retries": 2
     },
     {
       "action": "find_and_click",
-      "image": "templates/Endgame_ChallengeAgain.png",
+      "image": "InsideGame_reposition.png",
+      "retry_interval": 1,
+      "delay_before": 1,
+      "skip": false
+    },
+    {
+      "action": "find_and_click",
+      "image": "InsideGame_reposition.png",
+      "retry_interval": 1,
+      "delay_before": 4,
+      "skip": false
+    },
+    {
+      "action": "find_and_click",
+      "image": "InsideGame_reposition.png",
+      "retry_interval": 1,
+      "delay_before": 4,
+      "skip": false
+    },
+    {
+      "action": "joystick_drag",
+      "image": "Race_rank6.png",
+      "start_x": 1500,
+      "start_y": 600,
+      "end_x": 1900,
+      "end_y": 600,
+      "hold_duration": 5,
+      "delay_before": 3,
+      "retry_interval": 1,
+      "skip": true,
+      "max_retries": 2
+    },
+    {
+      "action": "find_and_click",
+      "image": "Endgame_ChallengeAgain.png",
       "retry_interval": 3,
       "skip": false
     },
     {
       "action": "stop_script",
-      "image": "templates/OutOfTime.png"
+      "image": "OutOfTime.png"
     }
   ]
 }
