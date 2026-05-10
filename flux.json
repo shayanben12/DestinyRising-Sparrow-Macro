@@ -95,7 +95,7 @@
     },
     {
       "action": "joystick_drag",
-      "image": "Race_pos6.png",
+      "image": "Race_rank6.png",
       "start_x": 1500,
       "start_y": 600,
       "end_x": 1900,
