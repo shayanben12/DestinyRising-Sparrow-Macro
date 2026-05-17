@@ -67,6 +67,7 @@ Click start on the instances you want to run, open the game in each one, log int
 **How to start the Multi-Instance system:**
 
 **1. Emulator Preparation**
+
 Open all MuMu Player instances that you plan to use in the session.
 
 **2. Enabling ADB**
