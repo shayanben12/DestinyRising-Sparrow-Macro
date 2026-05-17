@@ -1,3 +1,5 @@
+**If you need any help contact me on discord: zeca__**
+
 🛑 **READ BEFORE DOWNLOADING: BAN WARNING** 🛑
 
 ⚠️ **VERY IMPORTANT: The use of macros, automations, or any third-party script VIOLATES THE TERMS OF SERVICE of the game. Using this tool MAY RESULT IN THE BANNING of your account if you get caught. Use AT YOUR OWN RISK.**
