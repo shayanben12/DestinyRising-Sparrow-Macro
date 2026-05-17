@@ -36,6 +36,7 @@ After the Macro starts, you **DO NOT** need to leave MuMuPlayer on the main scre
 
 The multi-instance feature allows the script to control multiple emulators simultaneously, in case you want to farm on multiple accounts at the same time.
 
+
 **How to Create and Configure New Instances (Cloning)**
 
 To run multiple accounts, you do not need to install the game and configure everything from scratch on each new emulator. The correct and most efficient method is to clone your main instance.
@@ -62,6 +63,7 @@ Attention: The script reads this exact name to display in the terminal and save 
 **5. Execution**
 
 Click start on the instances you want to run, open the game in each one, log into the corresponding accounts, and start the script.
+
 
 
 **How to start the Multi-Instance system:**
