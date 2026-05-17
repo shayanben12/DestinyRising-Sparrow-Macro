@@ -3,6 +3,13 @@
   "steps": [
     {
       "action": "find_and_click",
+      "image": "activitiesButton.png",
+      "retry_interval": 1, 
+      "skip": true,
+      "max_retries": 3
+    },
+    {
+      "action": "find_and_click",
       "image": "Activities_CasualButton.png",
       "retry_interval": 1, 
       "skip": true,
@@ -33,7 +40,14 @@
       "action": "find_and_click",
       "image": "PreGame_ReadyButton.png",
       "retry_interval": 1,
-      "skip": false
+      "max_retries": 100,
+      
+      "on_fail": "restart",
+      "fail_wait_minutes": 12,
+      "fail_image": "Restart_activitiesButton_mobile.png",
+      "fail_retry_interval": 1,
+      "fail_max_retries": 10,
+      "fail_skip": false
     },
     {
       "action": "find_and_click",
@@ -45,19 +59,6 @@
       "action": "wait_for_image",
       "image": "InsideGame_Boost.png",
       "timeout": 300
-    },
-    {
-      "action": "joystick_drag",
-      "image": "Race_pos6.png",
-      "start_x": 400,
-      "start_y": 800,
-      "end_x": 400,
-      "end_y": 300,
-      "hold_duration": 3,
-      "delay_before": 5,
-      "retry_interval": 1,
-      "skip": true,
-      "max_retries": 2
     },
     {
       "action": "joystick_drag",
@@ -77,21 +78,42 @@
       "image": "InsideGame_reposition.png",
       "retry_interval": 1,
       "delay_before": 1,
-      "skip": false
+      "skip": true
+    },
+    {
+      "action": "find_and_click",
+      "image": "InsideGame_Boost.png",
+      "retry_interval": 1,
+      "skip": true,
+      "max_retries": 3
     },
     {
       "action": "find_and_click",
       "image": "InsideGame_reposition.png",
       "retry_interval": 1,
       "delay_before": 4,
-      "skip": false
+      "skip": true
+    },
+    {
+      "action": "find_and_click",
+      "image": "InsideGame_Boost.png",
+      "retry_interval": 1,
+      "skip": true,
+      "max_retries": 3
     },
     {
       "action": "find_and_click",
       "image": "InsideGame_reposition.png",
       "retry_interval": 1,
       "delay_before": 4,
-      "skip": false
+      "skip": true
+    },
+    {
+      "action": "find_and_click",
+      "image": "InsideGame_Boost.png",
+      "retry_interval": 1,
+      "skip": true,
+      "max_retries": 3
     },
     {
       "action": "joystick_drag",
