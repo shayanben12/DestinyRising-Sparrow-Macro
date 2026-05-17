@@ -33,38 +33,50 @@ After the Macro starts, you **DO NOT** need to leave MuMuPlayer on the main scre
 
 
 🌟 **User Guide: Multi-Instance System (Only if you want to farm in multiple accounts at same time)** 🌟
+
 The multi-instance feature allows the script to control multiple emulators simultaneously, in case you want to farm on multiple accounts at the same time.
 
 **How to Create and Configure New Instances (Cloning)**
+
 To run multiple accounts, you do not need to install the game and configure everything from scratch on each new emulator. The correct and most efficient method is to clone your main instance.
 
 **Step-by-Step for Cloning in MuMu Player:**
+
 **1. Close Processes**
+
 Completely close MuMu Player and any game that is running. Cloning does not work properly with the emulator in use.
 
 **2. Open the Manager**
+
 On Windows, search for and open the MuMu Multi-Drive app (Multi-Instance Manager), which is installed along with the emulator.
 
 **3. Start Cloning**
+
 In the manager's list, locate your main emulator (the one that already has the game installed and configured). Click the Copy/Clone button located on the right side of the corresponding line.
 
 **4. Rename the Instance**
+
 After the copy is finished, a new instance will appear in the list. Click on the edit icon (pencil) and change the name to something objective, like Primary Account, Secondary Account, etc.
 Attention: The script reads this exact name to display in the terminal and save your progress.
 
 **5. Execution**
+
 Click start on the instances you want to run, open the game in each one, log into the corresponding accounts, and start the script.
 
 
 **How to start the Multi-Instance system:**
-1. Emulator Preparation
+
+**1. Emulator Preparation**
 Open all MuMu Player instances that you plan to use in the session.
 
-2. Enabling ADB
+**2. Enabling ADB**
+ 
 In each open emulator, access the system settings and make sure that the Root Permission (or ADB Debugging) option is enabled. This is mandatory for the script to send click commands.
 
-3. Script Execution
+**3. Script Execution**
+
 Start the executable file (or run the Python file in the terminal).
 
-4. Automatic Recognition
+**4. Automatic Recognition**
+
 The script will scan the local network ports. It will identify the active emulators, read the name of each window directly from Windows, and display the individual status in the terminal. Each emulator runs separately, without interfering with one another
