@@ -1,9 +1,3 @@
-# =======================================================
-# Made by: Zeca[Lobo] - LATAM Server
-# =======================================================
-
-
-
 import cv2
 import numpy as np
 import subprocess
