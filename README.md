@@ -26,7 +26,7 @@ Download and extract the entire folder from the .zip (do not open the files from
 Open the game in MuMu Player and go to the Sparrow Race home screen (where the "Start Matching" button appears).
 This screen here
 
-<img width="3563" height="2003" alt="image" src="https://github.com/user-attachments/assets/62daf3d9-f595-442a-9dbc-9db6995fb406" />
+<img width="2560" height="1388" alt="MuMu-20260519-045959-171" src="https://github.com/user-attachments/assets/554bac7a-e222-4b5a-aa18-b94598856c22" />
 
 Then double-click on **Macro Sparrow Race.exe**.
 
