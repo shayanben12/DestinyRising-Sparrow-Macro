@@ -191,8 +191,18 @@ def ui_loop():
         # Print the cycle count and current action for each emulator using its Name
         for name in list(emulator_statuses.keys()):
             status = emulator_statuses.get(name, "")
-            cycle = emulator_cycles.get(name, 1)
-            sys.stdout.write(f"[{name}] Cycle {cycle} | {status}\033[K\n")
+            
+            # Fetch the tuple containing (session, total)
+            cycles = emulator_cycles.get(name, (1, 1))
+            
+            # Fallback just in case it reads an old integer format during startup
+            if isinstance(cycles, int):
+                session_cycle = 1
+                total_cycle = cycles
+            else:
+                session_cycle, total_cycle = cycles
+                
+            sys.stdout.write(f"[{name}] Session: {session_cycle} | Total: {total_cycle} | {status}\033[K\n")
             
         sys.stdout.flush()
         time.sleep(0.1)
@@ -212,8 +222,9 @@ class MacroBot:
         self.is_running = True
         
         # Load memory for this specific emulator using its Name
-        self.cycle_count = load_saved_cycles().get(self.name, 1)
-        emulator_cycles[self.name] = self.cycle_count
+        self.total_cycles = load_saved_cycles().get(self.name, 1)
+        self.session_cycles = 1 # Always starts at 1 when you open the bot
+        emulator_cycles[self.name] = (self.session_cycles, self.total_cycles)
 
     def log(self, message):
         """Updates the global dictionary so the UI thread can display the message under the Auto Name."""
@@ -544,9 +555,10 @@ class MacroBot:
             
             # If the script reached this point, all steps were successfully executed.
             if self.is_running:
-                self.cycle_count += 1
-                emulator_cycles[self.name] = self.cycle_count
-                save_cycle_count(self.name, self.cycle_count) # Save to PC
+                self.session_cycles += 1
+                self.total_cycles += 1
+                emulator_cycles[self.name] = (self.session_cycles, self.total_cycles)
+                save_cycle_count(self.name, self.total_cycles) # Save total to PC
                 self.log("Cycle completed successfully!")
 
 # =======================================================

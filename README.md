@@ -1,10 +1,6 @@
-**If you need any help contact me on discord: zeca__**
-
 **TL;DR**
 
 An automated, multi-instance macro for Destiny sparrow races running on MuMu Player. It uses ADB to send commands directly to the emulator in the background, meaning you can use your PC normally without needing to keep the game maximized or focused on your screen.
-
-
 
 🛑 **READ BEFORE DOWNLOADING: BAN WARNING** 🛑
 

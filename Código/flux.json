@@ -44,10 +44,10 @@
       
       "on_fail": "restart",
       "fail_wait_minutes": 12,
-      "fail_image": "Restart_activitiesButton_mobile.png",
+      "fail_image": ["EndSparrowRace_OKButton.png", "Restart_activitiesButton_mobile.png"],
       "fail_retry_interval": 1,
       "fail_max_retries": 10,
-      "fail_skip": false
+      "fail_skip": true
     },
     {
       "action": "find_and_click",
