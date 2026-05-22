@@ -185,7 +185,7 @@ def ui_loop():
     while True:
         # Move cursor to top-left instead of printing new lines (prevents screen flickering)
         sys.stdout.write('\033[H') 
-        sys.stdout.write("=== Multi-Instance Bot Status ===\033[K\n")
+        sys.stdout.write("=== Macro Status ===\033[K\n")
         sys.stdout.write("Press Ctrl+C to shut down all bots safely.\033[K\n\n")
         
         # Print the cycle count and current action for each emulator using its Name
